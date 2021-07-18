@@ -75,7 +75,7 @@ namespace FormsArchitecture.UWP
 			//todo: add font project
 			//Fix for not displaying icon font in RELEASE mode
 			//https://github.com/xamarin/Xamarin.Forms/issues/12404
-			//assemblies.Add(typeof(FontAwesomeIcons).Assembly);
+			assemblies.Add(typeof(FontAwesomeIcons).Assembly);
 
 			//todo: add RGplugin
 			//Add assemblies for Rgplugin to make it work on UWP
