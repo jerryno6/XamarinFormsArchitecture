@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -17,6 +18,14 @@ namespace FormsArchitecture.Service
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddGrpc();
+
+			services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+			{
+				builder.AllowAnyOrigin()
+				.AllowAnyMethod()
+				.AllowAnyHeader()
+				.WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
+			}));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,9 +38,24 @@ namespace FormsArchitecture.Service
 
 			app.UseRouting();
 
+			app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });// Must be added between UseRouting and UseEndpoints
+			app.UseCors();
+
+			// Add after existing UseGrpcWeb to fix for 3.1
+			//https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202
+			app.Use((c, next) =>
+			{
+				if (c.Request.ContentType == "application/grpc")
+				{
+					var current = c.Features.Get<IHttpResponseFeature>();
+					c.Features.Set<IHttpResponseFeature>(new HttpSysWorkaroundHttpResponseFeature(current));
+				}
+				return next();
+			});
+
 			app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapGrpcService<GreeterService>();
+				endpoints.MapGrpcService<GreeterService>().RequireCors("AllowAll");
 
 				endpoints.MapGet("/", async context =>
 				{

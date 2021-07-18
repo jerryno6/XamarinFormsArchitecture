@@ -2,7 +2,7 @@
   "profiles": {
     "FormsArchitecture.Service": {
       "commandName": "Project",
-      "applicationUrl": "https://localhost:35960",
+      "applicationUrl": "https://localhost:35960;https://localhost:35961",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

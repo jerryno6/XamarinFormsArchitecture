@@ -25,19 +25,19 @@ namespace FormsArchitecture.Service
 					webBuilder.UseStartup<Startup>();
 
 
-#if DEBUG
-					//todo: only use this to run in MACOS as develop environment
-					webBuilder.ConfigureKestrel(options =>
-					{
-						options.Limits.MinRequestBodyDataRate = null;
+//#if DEBUG
+//					//todo: only use this to run in MACOS as develop environment
+//					webBuilder.ConfigureKestrel(options =>
+//					{
+//						options.Limits.MinRequestBodyDataRate = null;
 
-						options.ListenAnyIP(35960,
-							listenOptions => { listenOptions.Protocols = HttpProtocols.Http1; });
+//						options.ListenAnyIP(35960,
+//							listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
 
-						options.ListenAnyIP(35961,
-							listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
-					});
-#endif
+//						options.ListenAnyIP(35961,
+//							listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
+//					});
+//#endif
 				});
 	}
 }
