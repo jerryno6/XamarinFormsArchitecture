@@ -161,6 +161,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FormsArchitecture.Shared.Fonts\FormsArchitecture.Shared.Fonts.csproj">
+      <Project>{6fbeeb4d-7afb-4827-85b7-e9c49031d402}</Project>
+      <Name>FormsArchitecture.Shared.Fonts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FormsArchitecture\FormsArchitecture.csproj">
       <Project>{c9a11812-c28b-4e5f-bd92-5c427fe0e7be}</Project>
       <Name>FormsArchitecture</Name>

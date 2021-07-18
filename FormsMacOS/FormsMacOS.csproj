@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Forms.5.0.0.2012\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.5.0.0.2012\build\Xamarin.Forms.props')" />
   <PropertyGroup>
@@ -28,7 +28,8 @@
     <IncludeMonoRuntime>false</IncludeMonoRuntime>
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
-    <HttpClientHandler></HttpClientHandler>
+    <HttpClientHandler>
+    </HttpClientHandler>
     <LinkMode>None</LinkMode>
     <AOTMode>None</AOTMode>
   </PropertyGroup>
@@ -36,7 +37,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EnableCodeSigning>false</EnableCodeSigning>
@@ -47,7 +49,8 @@
     <UseRefCounting>true</UseRefCounting>
     <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
     <LinkMode>SdkOnly</LinkMode>
-    <HttpClientHandler></HttpClientHandler>
+    <HttpClientHandler>
+    </HttpClientHandler>
     <AOTMode>None</AOTMode>
   </PropertyGroup>
   <ItemGroup>
@@ -106,6 +109,10 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FormsArchitecture.Shared.Fonts\FormsArchitecture.Shared.Fonts.csproj">
+      <Project>{6fbeeb4d-7afb-4827-85b7-e9c49031d402}</Project>
+      <Name>FormsArchitecture.Shared.Fonts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FormsArchitecture\FormsArchitecture.csproj">
       <Project>{C9A11812-C28B-4E5F-BD92-5C427FE0E7BE}</Project>
       <Name>FormsArchitecture</Name>

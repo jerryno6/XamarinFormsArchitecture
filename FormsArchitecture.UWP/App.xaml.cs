@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FormsArchitecture.Shared.Fonts;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Windows.ApplicationModel;
