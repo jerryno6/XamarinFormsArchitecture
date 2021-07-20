@@ -19,6 +19,9 @@ namespace FormsArchitecture.Service
 		{
 			services.AddGrpc();
 
+			//services.AddAuthorization();
+			//services.AddAuthentication();
+
 			services.AddCors(o => o.AddPolicy("AllowAll", builder =>
 			{
 				builder.AllowAnyOrigin()
@@ -37,6 +40,9 @@ namespace FormsArchitecture.Service
 			}
 
 			app.UseRouting();
+
+			//app.UseAuthorization();
+			//app.UseAuthentication();
 
 			app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });// Must be added between UseRouting and UseEndpoints
 			app.UseCors();
