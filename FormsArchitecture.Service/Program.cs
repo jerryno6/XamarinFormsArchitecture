@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -23,6 +24,27 @@ namespace FormsArchitecture.Service
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
+
+//#if DEBUG
+//					//todo: only use this to run in MACOS as develop environment
+//					webBuilder.ConfigureKestrel(options =>
+//					{
+//						options.Limits.MinRequestBodyDataRate = null;
+					
+//						options.ListenAnyIP(35960,
+//							listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
+//					});
+
+//					webBuilder.UseKestrel(kestrelOptions =>
+//					{
+//						kestrelOptions.ConfigureHttpsDefaults(httpsOptions =>
+//						{
+//							httpsOptions.SslProtocols = SslProtocols.None;
+//						});
+//					});
+//#endif
+
 				});
+
 	}
 }
