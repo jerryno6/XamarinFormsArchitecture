@@ -19,9 +19,6 @@ namespace FormsArchitecture.Service
 		{
 			services.AddGrpc();
 
-			//services.AddAuthorization();
-			//services.AddAuthentication();
-
 			services.AddCors(o => o.AddPolicy("AllowAll", builder =>
 			{
 				builder.AllowAnyOrigin()
@@ -41,23 +38,21 @@ namespace FormsArchitecture.Service
 
 			app.UseRouting();
 
-			//app.UseAuthorization();
-			//app.UseAuthentication();
-
 			app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });// Must be added between UseRouting and UseEndpoints
+			
 			app.UseCors();
 
-			// Add after existing UseGrpcWeb to fix for 3.1
+			// Todo: workaround Add after existing UseGrpcWeb to fix for 3.1
 			//https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202
-			app.Use((c, next) =>
-			{
-				if (c.Request.ContentType == "application/grpc")
-				{
-					var current = c.Features.Get<IHttpResponseFeature>();
-					c.Features.Set<IHttpResponseFeature>(new HttpSysWorkaroundHttpResponseFeature(current));
-				}
-				return next();
-			});
+			// app.Use((c, next) =>
+			// {
+			// 	if (c.Request.ContentType == "application/grpc")
+			// 	{
+			// 		var current = c.Features.Get<IHttpResponseFeature>();
+			// 		c.Features.Set<IHttpResponseFeature>(new HttpSysWorkaroundHttpResponseFeature(current));
+			// 	}
+			// 	return next();
+			// });
 
 			app.UseEndpoints(endpoints =>
 			{

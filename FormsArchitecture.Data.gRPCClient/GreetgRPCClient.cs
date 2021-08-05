@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using XamarinFormsArchitecture.Shared.Core.Interfaces.DataClients;
@@ -22,11 +23,15 @@ namespace FormsArchitecture.Data.gRPCClient
 			var httpHandler = new HttpClientHandler();
 
 #if DEBUG
-			// Return `true` to allow certificates that are untrusted/invalid
-			httpHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
+			//todo: only use this to run in MACOS as develop environment
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+			{
+				// Return `true` to allow certificates that are untrusted/invalid
+				httpHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
+			}
 #endif
 
-			using var channel = GrpcChannel.ForAddress(baseUrl, new GrpcChannelOptions
+		using var channel = GrpcChannel.ForAddress(baseUrl, new GrpcChannelOptions
 			{
 				HttpHandler = new GrpcWebHandler(httpHandler)
 			});
