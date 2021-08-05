@@ -18,32 +18,23 @@ namespace FormsArchitecture.Data.gRPCClient
 
 		}
 
-		public async Task<Greet> GreetAsync(string baseUrl)
+		public async Task<Greet> GreetAsync(string baseUrl, string name)
 		{
-			var httpHandler = new HttpClientHandler();
-
 #if DEBUG
-			//todo: only use this to run in MACOS as develop environment
 			if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
 			{
-				// Return `true` to allow certificates that are untrusted/invalid
-				httpHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
+				// The following statement allows you to call insecure services. To be used only in development environments.
+				AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+				baseUrl = baseUrl.Replace("https://","http://");
 			}
 #endif
 
-		using var channel = GrpcChannel.ForAddress(baseUrl, new GrpcChannelOptions
-			{
-				HttpHandler = new GrpcWebHandler(httpHandler)
-			});
+			// The port number(5001) must match the port of the gRPC server.
+			using var channel = GrpcChannel.ForAddress(baseUrl);
 			var client = new Greeter.GreeterClient(channel);
-			HelloReply reply = await client.SayHelloAsync(new HelloRequest { Name = "VuLe" });
+			HelloReply reply = await client.SayHelloAsync(new HelloRequest {Name = "VuLe"});
 
-			var result = new Greet()
-			{
-				Message = reply.Message
-			};
-
-			return result;
+			return new Greet() {Message = reply.Message};
 		}
 	}
 }
