@@ -12,12 +12,12 @@ namespace FormsArchitecture.Data.gRPCClient
 {
 	public class GreetgRPCClient : BaseClient, IGreetgRPCClient
 	{
-		public GreetgRPCClient(string baseUrl) : base(baseUrl)
+		public GreetgRPCClient() : base()
 		{
 
 		}
 
-		public async Task<Greet> GreetAsync()
+		public async Task<Greet> GreetAsync(string baseUrl)
 		{
 			var httpHandler = new HttpClientHandler();
 
@@ -26,7 +26,7 @@ namespace FormsArchitecture.Data.gRPCClient
 			httpHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
 #endif
 
-			using var channel = GrpcChannel.ForAddress(BaseUrl, new GrpcChannelOptions
+			using var channel = GrpcChannel.ForAddress(baseUrl, new GrpcChannelOptions
 			{
 				HttpHandler = new GrpcWebHandler(httpHandler)
 			});

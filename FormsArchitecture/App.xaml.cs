@@ -56,9 +56,9 @@ namespace FormsArchitecture
 			services.AddSingleton<IGreetRepository, GreetRepository>();
 
 			//Add clients
-			services.AddSingleton(typeof(IGreetgRPCClient), new GreetgRPCClient(AppConfig.BaseUrl));
+			services.AddSingleton(typeof(IGreetgRPCClient), (a) => new GreetgRPCClient());
 
-			//Add ViewModelss
+			//Add ViewModels
 			services.AddTransient<MainViewModel>();
 
 			return services.BuildServiceProvider();

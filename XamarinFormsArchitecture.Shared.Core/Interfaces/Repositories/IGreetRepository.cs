@@ -8,6 +8,6 @@ namespace XamarinFormsArchitecture.Shared.Core.Interfaces.Repositories
 {
 	public interface IGreetRepository
 	{
-		Task<Greet> Greet(); 
+		Task<Greet> Greet(string baseUrl); 
 	}
 }

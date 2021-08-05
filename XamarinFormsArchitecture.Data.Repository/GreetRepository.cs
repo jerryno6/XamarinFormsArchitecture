@@ -10,16 +10,16 @@ namespace XamarinFormsArchitecture.Data.Repository
 {
 	public class GreetRepository : IGreetRepository
 	{
-		IGreetgRPCClient greetDataClient;
+		private readonly IGreetgRPCClient _greetDataClient;
 
-		public GreetRepository(IGreetgRPCClient greetgRPCClient)
+		public GreetRepository(IGreetgRPCClient greetgRpcClient)
 		{
-			greetDataClient = greetgRPCClient;
+			_greetDataClient = greetgRpcClient;
 		}
 
-		public async Task<Greet> Greet()
+		public async Task<Greet> Greet(string baseUrl)
 		{
-			var result = await greetDataClient.GreetAsync();
+			var result = await _greetDataClient.GreetAsync(baseUrl);
 
 			return result;
 		}
