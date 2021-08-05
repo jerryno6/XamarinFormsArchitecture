@@ -17,9 +17,9 @@ namespace XamarinFormsArchitecture.Data.Repository
 			_greetDataClient = greetgRpcClient;
 		}
 
-		public async Task<Greet> Greet(string baseUrl)
+		public async Task<Greet> Greet(string baseUrl, string name)
 		{
-			var result = await _greetDataClient.GreetAsync(baseUrl);
+			var result = await _greetDataClient.GreetAsync(baseUrl, name);
 
 			return result;
 		}

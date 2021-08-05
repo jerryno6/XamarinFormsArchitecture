@@ -8,6 +8,6 @@ namespace XamarinFormsArchitecture.Shared.Core.Interfaces.DataClients
 {
 	public interface IGreetgRPCClient
 	{
-		Task<Greet> GreetAsync(string baseUrl);
+		Task<Greet> GreetAsync(string baseUrl, string name);
 	}
 }

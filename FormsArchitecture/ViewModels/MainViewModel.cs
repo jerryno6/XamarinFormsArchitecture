@@ -35,18 +35,8 @@ namespace FormsArchitecture.ViewModels
 
 			try
 			{
-#if DEBUG
-				//todo: only use this to run in MACOS as develop environment
-				if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-				{
-					// The following statement allows you to call insecure services. To be used only in development environments.
-					AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-					BaseUrl = BaseUrl.Replace("https", "http");
-				}
-#endif
-
-				var result = await _repository.Greet(BaseUrl);
-				GreetMessage = result.Message;
+				var result = await _repository.Greet(BaseUrl, "VuLe");
+				GreetMessage =$"Successfully: {result.Message}";
 
 			}
 			catch (Exception ex)
