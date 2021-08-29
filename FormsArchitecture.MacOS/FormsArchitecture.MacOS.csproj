@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6420DF3F-B779-4CCD-85BD-EADF7ADD42B2}</ProjectGuid>
+    <ProjectGuid>{476A61EF-4B72-4F07-96C2-89D6E4013E8D}</ProjectGuid>
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FormsArchitecture</RootNamespace>
+    <RootNamespace>FormsArchitecture.MacOS</RootNamespace>
     <AssemblyName>FormsMacOS</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
