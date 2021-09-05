@@ -8,21 +8,18 @@
     <None Remove="Protos\" />
     <None Remove="Google.Protobuf" />
     <None Remove="Protos\greet %28copy%29.proto" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Protos\" />
+    <None Remove="Protos\greet.proto" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.17.3" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.38.0" />
+    <PackageReference Include="Grpc.Net.Client.Web" Version="2.38.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.38.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="Protos\greet %28copy%29.proto" GrpcServices="Server">
-      <Access>Public</Access>
-      <ProtoCompile>True</ProtoCompile>
-      <ProtoRoot></ProtoRoot>
-      <CompileOutputs>True</CompileOutputs>
-      <OutputDir>obj/Debug\net5.0\</OutputDir>
-      <Generator>MSBuild:Compile</Generator>
-    </Protobuf>
+    <Protobuf Include="Protos\greet.proto" />
   </ItemGroup>
 </Project>

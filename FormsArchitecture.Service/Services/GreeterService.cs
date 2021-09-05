@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FormsArchitecture.Shared.gRPC;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 
