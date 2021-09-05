@@ -11,7 +11,7 @@
                TextColor="Black" FontSize="36"/>
         
         <Entry Text="{Binding BaseUrl}"
-               Placeholder="https://localhost:35960"
+               Placeholder="https://localhost:5000"
                FontSize="Title" 
                HorizontalOptions="Fill"/>
         
